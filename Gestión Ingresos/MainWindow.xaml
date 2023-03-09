@@ -1,0 +1,117 @@
+﻿<Window x:Class="Gestión_Ingresos.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Gestión_Ingresos"
+        mc:Ignorable="d"
+        Title="Gestion de ingresos" Height="450" Width="800">
+    <Grid>
+        <Grid.Resources>
+            <ResourceDictionary>
+                <Style x:Key="estiloBoton" TargetType="Button">
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderBrush" Value="LightCoral"/>
+                    <Setter Property="Height" Value="30"/>
+                    <Setter Property="Width" Value="143"/>
+                </Style>
+                <Style  x:Key="estiloEntry" TargetType="TextBox">
+                    <Setter Property="BorderBrush" Value="LightCoral"/>
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="BorderThickness" Value="2" />
+                    <Setter Property="TextAlignment"  Value="Center" />
+                </Style>
+                <Style x:Key="estiloCbox" TargetType="ComboBox">
+                    <Setter Property="BorderBrush" Value="LightCoral"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="Height" Value="25"/>
+                    <Setter Property="Background" Value="White"/>
+                </Style>
+                <Style x:Key="estiloTabla" TargetType="DataGrid">
+                    <Setter Property="AlternatingRowBackground" Value="LightCoral"/>
+                    <Setter Property="BorderBrush" Value="LightCoral"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="RowHeight" Value="25"/>
+                </Style>
+                <Style x:Key="estiloDT" TargetType="DatePicker">
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="BorderBrush" Value="LightCoral"/>
+                    <Setter Property="BorderThickness" Value="2"/>
+                    <Setter Property="Height" Value="25"/>
+                </Style>
+                <Style x:Key="estiloPestaña" TargetType="TabControl">
+                    <Setter Property="FontSize" Value="13"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Center"/>
+                </Style>
+            </ResourceDictionary>
+        </Grid.Resources>
+
+        <TabControl  Style="{StaticResource estiloPestaña}" SelectionChanged="TabControl_SelectionChanged" Name="Pestañas">
+            <TabItem Header="Gestión de usuarios">
+                <Grid Background="#fff">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="304*"/>
+                        <ColumnDefinition Width="33*"/>
+                        <ColumnDefinition Width="457*"/>
+                    </Grid.ColumnDefinitions>
+                    <Label Content="Documento" HorizontalAlignment="Left" Margin="144,15,0,0" VerticalAlignment="Top"/>
+                    <TextBox Style="{StaticResource estiloEntry}" HorizontalAlignment="Left" Margin="121,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="DocumentoEntry"/>
+                    <Label Content="Nombre" HorizontalAlignment="Left" Margin="6,15,0,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Column="1"/>
+                    <TextBox Style="{StaticResource estiloEntry}" HorizontalAlignment="Left" Margin="277,46,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name="NombreEntry" Grid.ColumnSpan="3" />
+                    <Label Content="Tipo de Persona" HorizontalAlignment="Left" Margin="115,15,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                    <ComboBox Style="{StaticResource estiloCbox}" HorizontalAlignment="Left" Margin="102,44,0,0" VerticalAlignment="Top" Width="120" Name="TipoPersonaCBox" Grid.Column="2" MouseLeave="TipoPersonaCBox_MouseLeave" />
+                    <Label Content="Depencendia" HorizontalAlignment="Left" Margin="276,15,0,0" VerticalAlignment="Top" Name="dependenciaLabel" Grid.Column="2"/>
+                    <ComboBox Style="{StaticResource estiloCbox}" HorizontalAlignment="Left" Margin="256,44,0,0" VerticalAlignment="Top" Width="120" Name="DependenciaCBox" IsEnabled="False" Grid.Column="2"  MouseLeave="DependenciaCBox_MouseLeave" />
+                    <Button  Style="{StaticResource estiloBoton}" Content="Guardar o Actualizar" Margin="104,86,50,0" VerticalAlignment="Top" Click = "GuardarUsuario" Padding="10,5,10,5"/>
+                    <Button Style="{StaticResource estiloBoton}" Content="Borrar campos" Padding="10,5,10,5" HorizontalAlignment="Left" Margin="267,86,0,0" VerticalAlignment="Top" Click="BorrarCampos" Width="140" Grid.ColumnSpan="3" RenderTransformOrigin="0.473,0.455"/>
+                    <DataGrid  Style="{StaticResource estiloTabla}" Name="TablaPrincipal" Grid.ColumnSpan="3" Margin="0,132,0,0" Focusable="False" HorizontalContentAlignment="Center" FlowDirection="LeftToRight" IsTextSearchEnabled="True" CanUserDeleteRows="False" CanUserAddRows="False"/>
+                    <Button Style="{StaticResource estiloBoton}" Content="Buscar Usuario" Padding="10,5,10,5" HorizontalAlignment="Left" Margin="88,86,0,0" VerticalAlignment="Top" Width="140" Grid.Column="2" Click="BuscarUsuario"/>
+                    <Button Style="{StaticResource estiloBoton}" Content="Borrar Usuario" Padding="10,5,10,5" HorizontalAlignment="Left" Margin="246,86,0,0" VerticalAlignment="Top" Width="140" Grid.Column="2" Click="BorrarUsuario"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Gestión de eventos">
+                <Grid Background="#fff">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100*"/>
+                        <ColumnDefinition Width="209*"/>
+                        <ColumnDefinition Width="24*"/>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="456*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Style="{StaticResource estiloEntry}"  HorizontalAlignment="Left" Margin="36,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Name ="DocumentoEvento" Grid.ColumnSpan="2"/>
+                    <Label Content="Documento" HorizontalAlignment="Left" Margin="59,33,0,0" VerticalAlignment="Top" Height="26" Width="82" Grid.ColumnSpan="2"/>
+                    <DatePicker  Style="{StaticResource estiloDT}" HorizontalAlignment="Left" Margin="124,60,0,0" VerticalAlignment="Top" Name="SelectorFecha" SelectedDateFormat="Short" MouseLeave="SelectorFecha_MouseLeave" Grid.ColumnSpan="4"  Width="150" Grid.Column="1"  />
+                    <Label Content="Fecha del evento" HorizontalAlignment="Left" Margin="147,30,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.904,0.542" Grid.ColumnSpan="4" Height="26" Width="108" Grid.Column="1"/>
+                    <Label Content="Hora del evento" HorizontalAlignment="Left" Margin="99,30,0,0" VerticalAlignment="Top" Grid.Column="4" Height="26" Width="107"/>
+                    <Button Style="{StaticResource estiloBoton}" Content="Guardar" HorizontalAlignment="Left" Margin="122,169,0,0" VerticalAlignment="Top" Click="GuardarEvento" Grid.ColumnSpan="4"  Grid.Column="1"/>
+                    <Button Style="{StaticResource estiloBoton}" Content="Limpiar" HorizontalAlignment="Left" Margin="89,169,0,0" VerticalAlignment="Top" Click="LimpiarEventos" RenderTransformOrigin="0.457,1.307" Grid.Column="4"/>
+                    <DataGrid Style="{StaticResource estiloTabla}" Name="TablaEvetos" Margin="0,239,0,46" Grid.ColumnSpan="5"/>
+                    <Label Content="Anteriores registros de esta persona" HorizontalAlignment="Left" Margin="178,204,0,0" VerticalAlignment="Top" Grid.ColumnSpan="4" Height="32" Width="238" Grid.Column="1"/>
+                    <ComboBox Style="{StaticResource estiloCbox}" HorizontalAlignment="Left" Margin="278,64,0,0" VerticalAlignment="Top" Width="120" Name ="TipoEventoCBox" Grid.Column="4"/>
+                    <Label Content="Tipo de evento" HorizontalAlignment="Left" Margin="286,30,0,0" VerticalAlignment="Top" Grid.Column="4" Height="26" Width="104"/>
+                    <TextBox MaxLength="5" Style="{StaticResource estiloEntry}" HorizontalAlignment="Left" Margin="89,63,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"  Name="HoraEntry" Grid.Column="4" PreviewMouseUp="touchTest" />
+                    <ComboBox Style="{StaticResource estiloCbox}" HorizontalAlignment="Left" Margin="4,121,0,0" VerticalAlignment="Top" Width="120" Name="ExcusaCBox" Visibility="Visible" Grid.Column="3" Grid.ColumnSpan="2" IsEnabled="False" />
+                    <Label Content="Excusa" HorizontalAlignment="Left" Margin="35,95,0,0" VerticalAlignment="Top" Visibility="Visible"  Name="ExcusaLabel" Grid.Column="4" Height="26" Width="48"/>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Generador de reportes">
+                <Grid Background="#fff">
+                    <DataGrid Style="{StaticResource estiloTabla}" Margin="0,191,0,0" Name="TablaReportador"/>
+                    <Label Content="Tipo de reporte&#xD;&#xA;" HorizontalAlignment="Left" Margin="80,39,0,0" VerticalAlignment="Top" Height="31"/>
+                    <ComboBox Style="{StaticResource estiloCbox}" HorizontalAlignment="Left" Margin="55,75,0,0" VerticalAlignment="Top" Name="TipoReporteCBox" Width="150" DropDownClosed="alerta" MouseLeave="ActualizarComponentes" />
+                    <Button Style="{StaticResource estiloBoton}" Content="Generar reporte" HorizontalAlignment="Left" Margin="330,124,0,0" VerticalAlignment="Top" Click="GeneradorReportesButton"/>
+                    <Label Content="Tipo de persona&#xA;" HorizontalAlignment="Left" Margin="251,39,0,0" VerticalAlignment="Top" Height="31"/>
+                    <ComboBox IsEnabled="False" Style="{StaticResource estiloCbox}" HorizontalAlignment="Left" Margin="227,75,0,0" VerticalAlignment="Top" Name="TipoPersonaReportadorCBox" Width="150"/>
+                    <Label Content="Fecha desde&#xA;" HorizontalAlignment="Left" Margin="433,41,0,0" VerticalAlignment="Top" Height="31"/>
+                    <DatePicker IsEnabled="False" Style="{StaticResource estiloDT}" HorizontalAlignment="Left" Margin="398,75,0,0" VerticalAlignment="Top" SelectedDateFormat="Short" Name="DesdeDatePicker"/>
+                    <Label Content="Fecha desde&#xA;" HorizontalAlignment="Left" Margin="604,41,0,0" VerticalAlignment="Top" Height="31"/>
+                    <DatePicker IsEnabled="False" Style="{StaticResource estiloDT}" HorizontalAlignment="Left" Margin="569,75,0,0" VerticalAlignment="Top" SelectedDateFormat="Short" Name="HastaDatePicker"/>
+                </Grid>
+            </TabItem>
+
+        </TabControl>
+
+    </Grid>
+</Window>
